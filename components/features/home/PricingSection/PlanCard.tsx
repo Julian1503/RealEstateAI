@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import {
     Box,
     Button,
@@ -16,6 +16,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import StarIcon from '@mui/icons-material/Star';
 import { keyframes } from '@mui/system';
 import { PlanCardProps } from './PricingSection.types';
+import { useCardAnimation } from '@hooks/useCardAnimation';
 
 /**
  * Animation for the pulsing effect on popular plans
@@ -47,37 +48,7 @@ export const PlanCard: React.FC<PlanCardProps> = ({
   description = id === 'free-plan' ? 'Try our basic features' : 'Perfect for active agents',
   animationDelay = 0
 }) => {
-    const [isHovered, setIsHovered] = useState(false);
-    const [isVisible, setIsVisible] = useState(false);
-    const cardRef = useRef(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        setIsVisible(true);
-                    }, animationDelay);
-                    observer.unobserve(entry.target);
-                }
-            },
-            {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            }
-        );
-
-        if (cardRef.current) {
-            observer.observe(cardRef.current);
-        }
-
-        return () => {
-            if (cardRef.current) {
-                observer.unobserve(cardRef.current);
-            }
-        };
-    }, [animationDelay]);
+    const { cardRef, isHovered, isVisible, handleMouseEnter, handleMouseLeave } = useCardAnimation(animationDelay);
 
     return (
         <Box ref={cardRef}>
@@ -85,8 +56,8 @@ export const PlanCard: React.FC<PlanCardProps> = ({
                 <Paper
                     id={id}
                     elevation={isHovered ? 12 : (popular ? 8 : 1)}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
                     sx={{
                         bgcolor: 'background.paper',
                         p: 4,

@@ -2,29 +2,28 @@ import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, Typography }
 import { BrushOutlined, Description, Share } from '@mui/icons-material';
 import React from "react";
 import { RecentActivityListProps } from './RecentActivityList.types';
+import { ActivityIconType, getActivityIconType, getAvatarColor } from '@/service/activityDisplayService';
 
 /**
  * RecentActivityList component - displays a list of recent activities
  */
 export const RecentActivityList: React.FC<RecentActivityListProps> = ({ activities }) => {
   /**
-   * Determine which icon to display based on the activity action
+   * Render the appropriate icon based on the activity type
    */
-  const getActivityIcon = (action: string) => {
-    if (action.includes('description')) return <Description />;
-    if (action.includes('image')) return <BrushOutlined />;
-    if (action.includes('Shared')) return <Share />;
-    return <Description />; // Default icon
-  };
+  const renderActivityIcon = (action: string) => {
+    const iconType = getActivityIconType(action);
 
-  /**
-   * Determine the background color of the avatar based on the activity action
-   */
-  const getAvatarColor = (action: string) => {
-    if (action.includes('description')) return 'primary.light';
-    if (action.includes('image')) return 'secondary.light';
-    if (action.includes('Shared')) return 'success.light';
-    return 'primary.light'; // Default color
+    switch (iconType) {
+      case ActivityIconType.DESCRIPTION:
+        return <Description />;
+      case ActivityIconType.IMAGE:
+        return <BrushOutlined />;
+      case ActivityIconType.SHARE:
+        return <Share />;
+      default:
+        return <Description />;
+    }
   };
 
   return (
@@ -43,7 +42,7 @@ export const RecentActivityList: React.FC<RecentActivityListProps> = ({ activiti
         >
           <ListItemAvatar>
             <Avatar sx={{ bgcolor: getAvatarColor(activity.action) }}>
-              {getActivityIcon(activity.action)}
+              {renderActivityIcon(activity.action)}
             </Avatar>
           </ListItemAvatar>
           <ListItemText
