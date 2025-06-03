@@ -26,7 +26,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
   const variantStyles = variant === 'contained'
     ? {
         bgcolor: primary ? 'primary.main' : 'secondary.main',
-        color: primary ? 'text.primary' : 'text.secondary',
+        color: primary ? 'text.primary' : 'text.primary',
         '&:hover': {
           bgcolor: primary ? 'primary.light' : 'secondary.light',
           transform: 'scale(1.05)'

@@ -4,7 +4,7 @@ import {motion} from 'framer-motion';
 import { AnimatedButtonsProps } from './Animations.types';
 
 /**
- * AnimatedButtons component - displays buttons with animation effects
+ * AnimatedButtons component - displays buttons with animations effects
  */
 export const AnimatedButtons: React.FC<AnimatedButtonsProps> = ({
     children,

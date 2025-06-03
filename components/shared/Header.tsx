@@ -60,6 +60,7 @@ const Header: React.FC<HeaderProps> = ({
                     themeMode={themeMode}
                     toggleTheme={toggleTheme}
                 />
+
             </Toolbar>
         </AppBar>
     );

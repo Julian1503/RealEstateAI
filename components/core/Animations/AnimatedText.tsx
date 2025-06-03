@@ -4,7 +4,7 @@ import {motion} from 'framer-motion';
 import { AnimatedTextProps } from './Animations.types';
 
 /**
- * AnimatedText component - displays text with animation effects
+ * AnimatedText component - displays text with animations effects
  */
 export const AnimatedText: React.FC<AnimatedTextProps> = ({
     children,

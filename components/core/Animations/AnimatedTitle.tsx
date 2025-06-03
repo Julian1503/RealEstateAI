@@ -3,7 +3,7 @@ import {Box, Typography} from '@mui/material';
 import { AnimatedTitleProps } from './Animations.types';
 
 /**
- * AnimatedTitle component - displays a title with a typing animation effect
+ * AnimatedTitle component - displays a title with a typing animations effect
  */
 export const AnimatedTitle: React.FC<AnimatedTitleProps> = ({
     preText,

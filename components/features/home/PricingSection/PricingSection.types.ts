@@ -58,7 +58,7 @@ export interface PlanCardProps {
   description?: string;
   
   /**
-   * Delay before animation starts (in milliseconds)
+   * Delay before animations starts (in milliseconds)
    */
   animationDelay?: number;
 }

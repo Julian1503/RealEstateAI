@@ -4,7 +4,7 @@ import {motion} from 'framer-motion';
 import { AnimatedGradientBackgroundProps } from './Animations.types';
 
 /**
- * AnimatedGradientBackground component - displays a gradient background with animation effects
+ * AnimatedGradientBackground component - displays a gradient background with animations effects
  */
 export const AnimatedGradientBackground: React.FC<AnimatedGradientBackgroundProps> = ({
     children,

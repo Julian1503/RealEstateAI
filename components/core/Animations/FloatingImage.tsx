@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FloatingImageProps } from './Animations.types';
 
 /**
- * FloatingImage component - displays an image with a floating animation effect
+ * FloatingImage component - displays an image with a floating animations effect
  */
 export const FloatingImage: React.FC<FloatingImageProps> = ({
     src,

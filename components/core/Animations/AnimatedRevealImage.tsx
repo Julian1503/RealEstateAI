@@ -4,7 +4,7 @@ import {motion} from 'framer-motion';
 import { AnimatedRevealImageProps } from './Animations.types';
 
 /**
- * AnimatedRevealImage component - displays an image with reveal animation effects
+ * AnimatedRevealImage component - displays an image with reveal animations effects
  */
 export const AnimatedRevealImage: React.FC<AnimatedRevealImageProps> = ({ children }) => {
     const theme = useTheme();

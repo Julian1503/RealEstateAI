@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
 /**
- * Custom hook for card animation effects
- * Handles visibility detection, animation delays, and hover state
+ * Custom hook for card animations effects
+ * Handles visibility detection, animations delays, and hover state
  */
 export const useCardAnimation = (animationDelay = 0) => {
   const [isHovered, setIsHovered] = useState(false);
