@@ -1,11 +1,13 @@
 import React from 'react';
-import { render, screen } from '../../../../test-utils';
-import { PricingSection } from './PricingSection';
-import { PlanCardProps } from './PricingSection.types';
+import { render, screen } from '@/test-utils';
+import { PricingSection } from '@features/home';
+import { PlanCardProps } from '@features/home';
+import {SectionContainerProps, SectionHeadingProps} from "@core/Container";
+import {RevealOnScrollProps} from "@components/core";
 
 // Mock the child components
 jest.mock('@components/core/Container/SectionHeading', () => ({
-  SectionHeading: ({ title, subtitle }) => (
+  SectionHeading: ({ title, subtitle } : SectionHeadingProps) => (
     <div data-testid="section-heading">
       <h2>{title}</h2>
       <p>{subtitle}</p>
@@ -14,7 +16,7 @@ jest.mock('@components/core/Container/SectionHeading', () => ({
 }));
 
 jest.mock('@components/core/Container/SectionContainer', () => ({
-  SectionContainer: ({ children, id, bgcolor }) => (
+  SectionContainer: ({ children, id, bgcolor } : SectionContainerProps) => (
     <div data-testid="section-container" id={id} style={{ backgroundColor: bgcolor }}>
       {children}
     </div>
@@ -22,7 +24,7 @@ jest.mock('@components/core/Container/SectionContainer', () => ({
 }));
 
 jest.mock('@components/core/Animations/RevealOnScroll', () => ({
-  RevealOnScroll: ({ children, delay }) => (
+  RevealOnScroll: ({ children, delay } : RevealOnScrollProps) => (
     <div data-testid="reveal-on-scroll" data-delay={delay}>
       {children}
     </div>
@@ -84,11 +86,11 @@ const mockPlans: PlanCardProps[] = [
 describe('PricingSection', () => {
   test('renders the section with correct heading', () => {
     render(<PricingSection plans={mockPlans} />);
-    
+
     const sectionContainer = screen.getByTestId('section-container');
     expect(sectionContainer).toBeInTheDocument();
     expect(sectionContainer).toHaveAttribute('id', 'pricing-section');
-    
+
     const heading = screen.getByTestId('section-heading');
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent('Plans for Every Real Estate Professional');
@@ -97,27 +99,29 @@ describe('PricingSection', () => {
 
   test('renders all plan cards', () => {
     render(<PricingSection plans={mockPlans} />);
-    
+
     const planCards = screen.getAllByTestId('plan-card');
     expect(planCards).toHaveLength(3);
-    
+
     // Check if each plan is rendered
     expect(screen.getByText('Basic')).toBeInTheDocument();
     expect(screen.getByText('Professional')).toBeInTheDocument();
     expect(screen.getByText('Enterprise')).toBeInTheDocument();
-    
+
     // Check if prices are rendered
     expect(screen.getByText('$0/month')).toBeInTheDocument();
     expect(screen.getByText('$49/month')).toBeInTheDocument();
     expect(screen.getByText('$99/month')).toBeInTheDocument();
-    
+
     // Check if features are rendered
     mockPlans.forEach(plan => {
       plan.features.forEach(feature => {
-        expect(screen.getByText(feature)).toBeInTheDocument();
+        // Use getAllByText instead of getByText since features can appear in multiple plans
+        const featureElements = screen.getAllByText(feature);
+        expect(featureElements.length).toBeGreaterThan(0);
       });
     });
-    
+
     // Check if action labels are rendered
     expect(screen.getByText('Get Started')).toBeInTheDocument();
     expect(screen.getByText('Choose Pro')).toBeInTheDocument();
@@ -126,10 +130,10 @@ describe('PricingSection', () => {
 
   test('renders RevealOnScroll with correct delays', () => {
     render(<PricingSection plans={mockPlans} />);
-    
+
     const revealComponents = screen.getAllByTestId('reveal-on-scroll');
     expect(revealComponents).toHaveLength(3);
-    
+
     // Check if delays are applied correctly
     expect(revealComponents[0]).toHaveAttribute('data-delay', '0');
     expect(revealComponents[1]).toHaveAttribute('data-delay', '100');
@@ -138,17 +142,17 @@ describe('PricingSection', () => {
 
   test('renders the pricing footer', () => {
     render(<PricingSection plans={mockPlans} />);
-    
+
     const footer = screen.getByTestId('pricing-footer');
     expect(footer).toBeInTheDocument();
   });
 
   test('renders with empty plans array', () => {
     render(<PricingSection plans={[]} />);
-    
+
     const planCards = screen.queryAllByTestId('plan-card');
     expect(planCards).toHaveLength(0);
-    
+
     // Section and heading should still render
     expect(screen.getByTestId('section-container')).toBeInTheDocument();
     expect(screen.getByTestId('section-heading')).toBeInTheDocument();

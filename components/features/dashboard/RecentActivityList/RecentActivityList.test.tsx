@@ -3,6 +3,7 @@ import { render, screen } from '../../../../test-utils';
 import { RecentActivityList } from './RecentActivityList';
 import { Activity } from './RecentActivityList.types';
 import { ActivityIconType } from '@/service/activityDisplayService';
+import '@testing-library/jest-dom';
 
 // Mock the activityDisplayService
 jest.mock('@/service/activityDisplayService', () => ({
@@ -28,9 +29,9 @@ jest.mock('@/service/activityDisplayService', () => ({
 
 // Mock the MUI icons
 jest.mock('@mui/icons-material', () => ({
-  BrushOutlined: () => <div data-testid="icon-brush">BrushIcon</div>,
-  Description: () => <div data-testid="icon-description">DescriptionIcon</div>,
-  Share: () => <div data-testid="icon-share">ShareIcon</div>
+  BrushOutlined: () => <div data-testid="BrushOutlinedIcon">BrushIcon</div>,
+  Description: () => <div data-testid="DescriptionIcon">DescriptionIcon</div>,
+  Share: () => <div data-testid="ShareIcon">ShareIcon</div>
 }));
 
 describe('RecentActivityList', () => {
@@ -64,14 +65,14 @@ describe('RecentActivityList', () => {
 
   test('renders list with correct number of activities', () => {
     render(<RecentActivityList activities={mockActivities} />);
-    
+
     const listItems = screen.getAllByRole('listitem');
     expect(listItems).toHaveLength(mockActivities.length);
   });
 
   test('renders activity details correctly', () => {
     render(<RecentActivityList activities={mockActivities} />);
-    
+
     // Check if all actions are rendered
     mockActivities.forEach(activity => {
       expect(screen.getByText(activity.action)).toBeInTheDocument();
@@ -82,20 +83,20 @@ describe('RecentActivityList', () => {
 
   test('renders correct icons based on activity type', () => {
     render(<RecentActivityList activities={mockActivities} />);
-    
+
     // Description icon for "Generated description"
-    expect(screen.getAllByTestId('icon-description')).toHaveLength(2); // One for "Generated description" and one for "Other action" (default)
-    
+    expect(screen.getAllByTestId('DescriptionIcon')).toHaveLength(2); // One for "Generated description" and one for "Other action" (default)
+
     // Brush icon for "Created image"
-    expect(screen.getByTestId('icon-brush')).toBeInTheDocument();
-    
+    expect(screen.getByTestId('BrushOutlinedIcon')).toBeInTheDocument();
+
     // Share icon for "Shared listing"
-    expect(screen.getByTestId('icon-share')).toBeInTheDocument();
+    expect(screen.getByTestId('ShareIcon')).toBeInTheDocument();
   });
 
   test('renders empty list when no activities are provided', () => {
     render(<RecentActivityList activities={[]} />);
-    
+
     const listItems = screen.queryAllByRole('listitem');
     expect(listItems).toHaveLength(0);
   });
@@ -103,10 +104,10 @@ describe('RecentActivityList', () => {
   test('renders with a single activity', () => {
     const singleActivity = [mockActivities[0]];
     render(<RecentActivityList activities={singleActivity} />);
-    
+
     const listItems = screen.getAllByRole('listitem');
     expect(listItems).toHaveLength(1);
-    
+
     expect(screen.getByText(singleActivity[0].action)).toBeInTheDocument();
     expect(screen.getByText(singleActivity[0].property)).toBeInTheDocument();
     expect(screen.getByText(`— ${singleActivity[0].time}`)).toBeInTheDocument();
@@ -114,7 +115,7 @@ describe('RecentActivityList', () => {
 
   test('renders with light theme', () => {
     render(<RecentActivityList activities={mockActivities} />, { themeMode: 'light' });
-    
+
     // Check if all activities are still rendered
     mockActivities.forEach(activity => {
       expect(screen.getByText(activity.action)).toBeInTheDocument();
