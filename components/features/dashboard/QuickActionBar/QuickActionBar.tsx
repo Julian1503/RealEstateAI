@@ -5,7 +5,9 @@ import { QuickActionBarProps } from './QuickActionBar.types';
 /**
  * QuickActionBar component - displays a card with quick action buttons
  */
-export const QuickActionBar: React.FC<QuickActionBarProps> = () => {
+export const QuickActionBar: React.FC<QuickActionBarProps> = ({
+    links
+                                                              }) => {
   const theme = useTheme();
   
   return (
@@ -20,26 +22,22 @@ export const QuickActionBar: React.FC<QuickActionBarProps> = () => {
             Quick Actions
           </Typography>
           <Grid container spacing={2}>
-            <Grid>
-              <Button>
-                New Property
-              </Button>
-            </Grid>
-            <Grid>
-              <Button>
-                Generate AI Description
-              </Button>
-            </Grid>
-            <Grid>
-              <Button>
-                Enhance Property Image
-              </Button>
-            </Grid>
-            <Grid>
-              <Button>
-                Create Social Post
-              </Button>
-            </Grid>
+            {
+              links.map((link, index) => (
+                <Grid key={index}>
+                  <Button
+                    variant="text"
+                    color="primary"
+                    component="a"
+                    href={link.href}
+                    fullWidth
+
+                  >
+                    {link.label}
+                  </Button>
+                </Grid>
+              ))
+            }
           </Grid>
         </CardContent>
       </Card>

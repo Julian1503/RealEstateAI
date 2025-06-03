@@ -1,8 +1,7 @@
 import React from 'react';
 import { Box, Stack } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import { SectionHeading } from "@components/core/Container/SectionHeading";
-import { SectionContainer } from "@components/core/Container/SectionContainer";
+import { Section } from "@components/core/Container/Section";
 import { HowItWorksSectionProps } from './HowItWorksSection.types';
 import { HowItWorksStep } from './HowItWorksStep';
 
@@ -10,14 +9,11 @@ import { HowItWorksStep } from './HowItWorksStep';
  * HowItWorksSection component - displays a section explaining how the service works
  */
 export const HowItWorksSection: React.FC<HowItWorksSectionProps> = () => (
-  <SectionContainer
+  <Section
     id="how-it-works"
-    bgcolor="background.default"
+    title="How It Works"
+    subtitle="Generate professional real estate content in just three simple steps."
   >
-    <SectionHeading
-      title="How It Works"
-      subtitle="Generate professional real estate content in just three simple steps."
-    />
     <Stack direction={{ xs: 'column', md: 'row' }} alignItems="center" justifyContent="space-between" spacing={4}>
       <HowItWorksStep
         number={1}
@@ -41,5 +37,5 @@ export const HowItWorksSection: React.FC<HowItWorksSectionProps> = () => (
         description="Our AI generates multiple options for you to choose from, edit, and download or publish directly."
       />
     </Stack>
-  </SectionContainer>
+  </Section>
 );

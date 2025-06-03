@@ -1,17 +1,23 @@
 import React from 'react';
-import {Box, Container} from '@mui/material';
-import {SectionContainerProps} from "@core/Container/Container.types";
-
+import { Box, Container } from '@mui/material';
+import { SectionContainerProps } from "@core/Container/Container.types";
 
 export const SectionContainer = ({
                                      id,
-                                     bgcolor,
+                                     bgcolor = 'background.default',
                                      children,
-                                     py = 10,
-                                     px = 3,
+                                     py = 8,
+                                     px = 2,
                                      sx = {},
-                                     maxWidth
+                                     maxWidth,
+                                     useContainer = true
                                  }: SectionContainerProps) => {
+    const content = useContainer ? (
+        <Container maxWidth={maxWidth as any}>
+            {children}
+        </Container>
+    ) : children;
+
     return (
         <Box
             id={id}
@@ -20,13 +26,11 @@ export const SectionContainer = ({
                 py,
                 px,
                 color: 'text.primary',
-                maxWidth,
+                ...(!useContainer && maxWidth && { maxWidth }),
                 ...sx
             }}
         >
-            <Container>
-                {children}
-            </Container>
+            {content}
         </Box>
     );
 };

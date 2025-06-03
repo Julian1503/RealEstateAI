@@ -18,7 +18,7 @@ const Layout: React.FC<LayoutProps> = ({
         <>
             <CssBaseline />
             <Head>
-                <title>AI Realty Assistant</title>
+                <title>RealEstateAI</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
             <Box

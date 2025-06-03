@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Stack, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
 
-import { SectionContainer } from '@components/core/Container/SectionContainer';
+import { Section } from '@components/core/Container/Section';
 import { AnimatedText, AnimatedGradientBackground, AnimatedHighlightText as AdvancedText } from '@components/core/Animations';
 import { GlowActionButton } from "@components/core/Button";
 import { AnimatedRevealImage } from "@components/core/Animations";
@@ -26,7 +26,7 @@ export const Hero: React.FC<HeroProps> = () => {
             ]}
             intensity={0.07}
         >
-            <SectionContainer
+            <Section
                 id="hero-section"
                 bgcolor="transparent"
                 sx={{
@@ -109,7 +109,7 @@ export const Hero: React.FC<HeroProps> = () => {
                         </AnimatedRevealImage>
                     </Box>
                 </Stack>
-            </SectionContainer>
+            </Section>
         </AnimatedGradientBackground>
     );
 };

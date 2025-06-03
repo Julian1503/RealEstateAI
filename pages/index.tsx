@@ -1,5 +1,5 @@
 import Layout from '@components/layout/home/Layout'
-import Header from '@components/layout/home/Header'
+import Header from '@shared/Header'
 import Footer from '@components/layout/home/Footer'
 import Main from "@components/layout/home/LandingPage";
 

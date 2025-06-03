@@ -61,8 +61,15 @@ export default function Dashboard() {
         { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
         { id: 'properties', label: 'Properties', icon: <HouseIcon />, path: '/properties' },
         { id: 'descriptions', label: 'AI Descriptions', icon: <DescriptionIcon />, path: '/descriptions' },
-        { id: 'images', label: 'Image Enhancement', icon: <ImageIcon />, path: '/images' },
+        { id: 'images', label: 'Image Enhancement', icon: <ImageIcon />, path: '/image-enhancer' },
         { id: 'social', label: 'Social Media', icon: <ShareIcon />, path: '/social' },
+    ];
+
+    const quickActionLinks = [
+        { label: 'Add Property', href: '/properties/add' },
+        { label: 'Generate Description', href: '/descriptions/generate' },
+        { label: 'Enhance Image', href: '/dashboard/image-enhancer/' },
+        { label: 'Share on Social Media', href: '/social/share' },
     ];
 
     const secondaryNavItems = [
@@ -116,8 +123,8 @@ export default function Dashboard() {
                 <Container maxWidth="xl">
                     <WelcomeHeader username="Sarah" />
                     <Grid container spacing={3}>
+                        <QuickActionBar links={quickActionLinks} />
                         <DashboardStats />
-                        <QuickActionBar />
                         <RecentPropertiesSection properties={recentProperties} />
                         <RecentActivitySection activities={activities}/>
                     </Grid>

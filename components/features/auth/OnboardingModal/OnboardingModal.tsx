@@ -53,7 +53,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
     <Modal
       open={open}
       onClose={onClose}
-      title="Welcome to AI Realty Assistant!"
+      title="Welcome to RealEstateAI!"
       icon={modalIcon}
       actions={modalActions}
     >

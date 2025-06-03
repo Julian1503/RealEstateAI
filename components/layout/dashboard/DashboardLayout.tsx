@@ -19,6 +19,7 @@ import {
     useTheme
 } from '@mui/material';
 import {Menu as MenuIcon, Notifications} from '@mui/icons-material';
+import Link from "next/link";
 
 const DEFAULT_DRAWER_WIDTH = 240;
 
@@ -102,8 +103,9 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                 {navItems.map(item => (
                     <ListItem key={item.id} disablePadding>
                         <ListItemButton
+                            component={Link}
+                            href={item.path}
                             selected={selectedPath === item.path}
-                            onClick={() => onNavigate(item.path)}
                         >
                             <ListItemIcon>{item.icon}</ListItemIcon>
                             <ListItemText primary={item.label} />
@@ -130,7 +132,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     );
 
     return (
-        <Box sx={{ display: 'flex' , overflow: 'hidden', height: '100vh', backgroundColor: theme.palette.background.default }}>
+        <Box sx={{ display: 'flex' , overflow: {md: 'hidden'}, height: '100vh', backgroundColor: theme.palette.background.default }}>
             <CssBaseline />
             <AppBar
                 position="fixed"

@@ -1,6 +1,5 @@
 import React from 'react';
-import { SectionHeading } from "@components/core/Container/SectionHeading";
-import { SectionContainer } from "@components/core/Container/SectionContainer";
+import { Section } from "@components/core/Container/Section";
 import { FAQSectionProps, FAQItem } from './FAQSection.types';
 import { FAQAccordionList } from './FAQAccordionList';
 
@@ -38,16 +37,13 @@ export const FAQSection: React.FC<FAQSectionProps> = () => {
   ];
 
   return (
-    <SectionContainer
-      id="faq-section"
-      bgcolor="background.default"
-    >
-      <SectionHeading
+      <Section
+        id="faq-section"
         title="Frequently Asked Questions"
         subtitle="Got questions? We've got answers."
-      />
-
+        py={8}
+        px={2}>
       <FAQAccordionList faqItems={faqItems} />
-    </SectionContainer>
+      </Section>
   );
 };

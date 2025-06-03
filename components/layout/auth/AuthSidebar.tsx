@@ -3,7 +3,7 @@ import React, {ReactNode} from 'react';
 import {BenefitsList} from "@components/features/auth/BenefitsList";
 import {SidebarCTA} from "@components/features/auth/SidebarCTA";
 
-interface AuthSidebarProps {
+export interface AuthSidebarProps {
     title: string;
     subtitle: string;
     benefits: {

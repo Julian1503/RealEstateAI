@@ -1,10 +1,13 @@
 import React from 'react';
-import { render, screen, fireEvent } from '../../test-utils';
+import { render, screen, fireEvent } from '@/test-utils';
 import LoginPage from './index';
+import {AuthSidebarProps} from "@layout/auth/AuthSidebar";
+import {AuthLayoutProps} from "@layout/auth/AuthLayout";
+import {OnboardingModalProps} from "@features/auth";
 
 // Mock the components used in the login page
 jest.mock('@components/features/auth/LoginPanel', () => ({
-  LoginPanel: ({ onAuth, onSubmit }) => (
+  LoginPanel: ({ onAuth, onSubmit }: { onAuth: () => void, onSubmit: (event: React.FormEvent) => void }) => (
     <div data-testid="login-panel">
       <button data-testid="google-signin" onClick={onAuth}>Sign in with Google</button>
       <form data-testid="login-form" onSubmit={onSubmit}>
@@ -17,7 +20,7 @@ jest.mock('@components/features/auth/LoginPanel', () => ({
 }));
 
 jest.mock('@components/layout/auth/AuthSidebar', () => ({
-  AuthSidebar: ({ title, subtitle, benefits, callToAction }) => (
+  AuthSidebar: ({ title, subtitle, benefits, callToAction }: AuthSidebarProps) => (
     <div data-testid="auth-sidebar">
       <h2>{title}</h2>
       <p>{subtitle}</p>
@@ -27,15 +30,15 @@ jest.mock('@components/layout/auth/AuthSidebar', () => ({
         ))}
       </ul>
       <div>
-        <span>{callToAction.text}</span>
-        <button onClick={callToAction.onClick}>{callToAction.buttonText}</button>
+        <span>{callToAction?.text}</span>
+        <button onClick={callToAction?.onClick}>{callToAction?.buttonText}</button>
       </div>
     </div>
   ),
 }));
 
 jest.mock('@components/layout/auth/AuthLayout', () => ({
-  AuthLayout: ({ leftContent, rightContent }) => (
+  AuthLayout: ({ leftContent, rightContent } : AuthLayoutProps) => (
     <div data-testid="auth-layout">
       <div data-testid="left-content">{leftContent}</div>
       <div data-testid="right-content">{rightContent}</div>
@@ -44,7 +47,7 @@ jest.mock('@components/layout/auth/AuthLayout', () => ({
 }));
 
 jest.mock('@components/features/auth/OnboardingModal', () => ({
-  OnboardingModal: ({ open, onClose }) => (
+  OnboardingModal: ({ open, onClose } : OnboardingModalProps) => (
     open ? <div data-testid="onboarding-modal">
       <button onClick={onClose}>Close</button>
     </div> : null

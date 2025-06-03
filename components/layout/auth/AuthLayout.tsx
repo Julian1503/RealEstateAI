@@ -1,7 +1,7 @@
 import {Box, Paper, useTheme} from '@mui/material';
 import React, {ReactNode} from 'react';
 
-interface AuthLayoutProps {
+export interface AuthLayoutProps {
     leftContent: ReactNode;
     rightContent: ReactNode;
 }

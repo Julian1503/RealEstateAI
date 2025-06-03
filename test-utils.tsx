@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { render, RenderOptions } from '@testing-library/react';
+import { render as rtlRender, RenderOptions } from '@testing-library/react';
 import { ThemeProvider } from '@components/core/Theme/ThemeContext';
 import { ThemeContext, ThemeMode } from '@components/core/Theme/Theme.types';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
@@ -10,12 +10,12 @@ interface CustomRenderOptions extends Omit<RenderOptions, 'wrapper'> {
   themeMode?: ThemeMode;
 }
 
-export function renderWithProviders(
+function render(
   ui: ReactElement,
   { themeMode = 'dark', ...renderOptions }: CustomRenderOptions = {}
 ) {
   const theme = themeMode === 'dark' ? darkTheme : lightTheme;
-  
+
   // Mock theme context value
   const themeContextValue = {
     mode: themeMode,
@@ -33,7 +33,7 @@ export function renderWithProviders(
   }
 
   return {
-    ...render(ui, { wrapper: Wrapper, ...renderOptions }),
+    ...rtlRender(ui, { wrapper: Wrapper, ...renderOptions }),
     // Return additional helper functions or mocked values if needed
     mockThemeToggle: themeContextValue.toggleTheme,
   };
@@ -41,4 +41,6 @@ export function renderWithProviders(
 
 // Re-export everything from testing-library
 export * from '@testing-library/react';
-export { renderWithProviders as render };
+export { render };
+// For backward compatibility
+export const renderWithProviders = render;

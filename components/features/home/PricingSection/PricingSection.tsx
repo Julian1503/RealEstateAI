@@ -1,8 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import {RevealOnScroll} from "@components/core/Animations/RevealOnScroll";
-import { SectionHeading } from "@components/core/Container/SectionHeading";
-import { SectionContainer } from "@components/core/Container/SectionContainer";
+import { Section } from "@components/core/Container/Section";
 import { PricingSectionProps } from './PricingSection.types';
 import { PlanCard } from './PlanCard';
 import { PricingFooter } from './PricingFooter';
@@ -11,14 +10,11 @@ import { PricingFooter } from './PricingFooter';
  * PricingSection component - displays a section with pricing plans
  */
 export const PricingSection: React.FC<PricingSectionProps> = ({ plans }) => (
-  <SectionContainer
+  <Section
     id="pricing-section"
-    bgcolor="background.default"
+    title="Plans for Every Real Estate Professional"
+    subtitle="Whether you're an independent agent or part of a large brokerage, we have flexible plans to meet your needs"
   >
-    <SectionHeading 
-      title="Plans for Every Real Estate Professional"
-      subtitle="Whether you're an independent agent or part of a large brokerage, we have flexible plans to meet your needs" 
-    />
     <Box
       sx={{
         display: 'flex',
@@ -35,5 +31,5 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ plans }) => (
       ))}
     </Box>
     <PricingFooter />
-  </SectionContainer>
+  </Section>
 );

@@ -40,7 +40,7 @@ export const LoginPanel: React.FC<LoginPanelProps> = ({ onAuth, onSubmit }) => {
             variant="h5"
             fontWeight="bold"
           >
-            AI Realty Assistant
+            RealEstateAI
           </Typography>
         </Box>
         <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>

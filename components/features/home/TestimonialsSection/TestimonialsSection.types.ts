@@ -27,7 +27,7 @@ export const TESTIMONIALS_DATA: TestimonialCardProps[] = [
     role: "Senior Realtor",
     company: "ReMax",
     avatar: "https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg",
-    testimonial: "AI Realty Assistant has cut my content creation time by 75%. The property descriptions are so compelling that my listings are getting more views and inquiries.",
+    testimonial: "RealEstateAI has cut my content creation time by 75%. The property descriptions are so compelling that my listings are getting more views and inquiries.",
     rating: 5,
   },
   {
@@ -43,7 +43,7 @@ export const TESTIMONIALS_DATA: TestimonialCardProps[] = [
     role: "Independent Agent",
     company: "",
     avatar: "https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-4.jpg",
-    testimonial: "As an independent agent, I couldn't afford a marketing team. Now with AI Realty Assistant, I compete with the big agencies. The ROI has been incredible.",
+    testimonial: "As an independent agent, I couldn't afford a marketing team. Now with RealEstateAI, I compete with the big agencies. The ROI has been incredible.",
     rating: 4.5,
   },
 ];

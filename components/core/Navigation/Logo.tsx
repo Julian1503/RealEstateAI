@@ -5,7 +5,7 @@ import {LogoProps} from '@core/Navigation/Navigation.types';
 
 
 const Logo: React.FC<LogoProps> = ({
-                                       text = 'AI Realty Assistant',
+                                       text = 'RealEstateAI',
                                        iconColor = 'primary.main',
                                        fontSize = '1rem',
                                    }) => (
